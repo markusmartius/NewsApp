@@ -12,7 +12,7 @@ public class News {
     /**
      * News article title
      */
-    private String mWebTitle;
+    private String mNewsTitle;
     /**
      * Section where article resides
      */
@@ -23,14 +23,14 @@ public class News {
      *
      * @param weburl             Web URL of the news article
      * @param webpublicationdate Publication date of the article
-     * @param webtitle           News article title
+     * @param newstitle           News article title
      * @param sectionname        Section where article resides
      *
      */
-    public News(String weburl, String webpublicationdate, String webtitle, String sectionname) {
+    public News(String weburl, String webpublicationdate, String newstitle, String sectionname) {
         mWebUrl = weburl;
         mWebPublicationDate = webpublicationdate;
-        mWebTitle = webtitle;
+        mNewsTitle = newstitle;
         mSectionName = sectionname;
     }
 
@@ -44,15 +44,15 @@ public class News {
     /**
      * Get publication date of the article.
      */
-    public String getWebPublicationDateLocation() {
+    public String getWebPublicationDate() {
         return mWebPublicationDate;
     }
 
     /**
      * Get news article title.
      */
-    public String getWebTitleURL() {
-        return mWebTitle;
+    public String getNewsTitle() {
+        return mNewsTitle;
     }
 
     /**

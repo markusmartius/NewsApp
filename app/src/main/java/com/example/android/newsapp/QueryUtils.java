@@ -118,7 +118,7 @@ public final class QueryUtils {
     public static List<News> extractFeatureFromJson(String earthquakeJSON) {
 
         // Create an empty ArrayList that we can start adding earthquakes to
-        List<News> earthquakes = new ArrayList<>();
+        List<News> newsarticles = new ArrayList<>();
 
         // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -138,6 +138,12 @@ public final class QueryUtils {
             // sectionId.
             for(int i=0; i < resultsArray.length(); i++) {
 
+                // Define string to hold required JSON strings
+                String weburl = null;
+                String webpublicationdate = null;
+                String webtitle = null;
+                String sectionname = null;
+
                 // each loop step through each JSON object in the resultsArray
                 JSONObject resultObject = resultsArray.getJSONObject(i);
 
@@ -148,33 +154,16 @@ public final class QueryUtils {
                 // If it is the news sectionId acquire the required details
                 if (sectionid == "news") {
                     // extract the earthquate url
-                    String weburl = responseObject.optString("webUrl");
-                    String webpublicationdate = responseObject.optString("webPublicationDate");
-                    String webtitle = responseObject.optString("webTitle");
-                    String sectionname = responseObject.optString("sectionName");
-                } else {
-                    return null;
+                    weburl = responseObject.optString("webUrl");
+                    webpublicationdate = responseObject.optString("webPublicationDate");
+                    webtitle = responseObject.optString("webTitle");
+                    sectionname = responseObject.optString("sectionName");
                 }
 
-                // from each feature object check if the object has the sectionId = news
-                JSONObject featureProperties = featureObject.getJSONObject("sectionId");
-
-                // acquire the key values for the following from the feature properties
-                // extract the magnitude of the earthquake
-                Double magnitude = featureProperties.getDouble("mag");
-
-                // extract where the earthquake occurred
-                //String place = featureProperties.optString("place");
-
-                // extract the time of the earthquake
-                long time = featureProperties.optLong("time");
-
-                // extract the earthquate url
-                String url = featureProperties.optString("url");
-
-                // create an earthquake object from the acquired data and add it to the
-                // earthquakes ArrayList
-                earthquakes.add(new News(magnitude, place, url, time));
+                // create a news object from the acquired data and add it to the
+                // news ArrayList
+                newsarticles.add(new News(weburl, webpublicationdate, webtitle, sectionname));
+                Log.i("QueryUtils", "Finished parsing JSON Object.");
             }
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
@@ -184,7 +173,7 @@ public final class QueryUtils {
         }
 
         // Return the list of earthquakes
-        return earthquakes;
+        return newsarticles;
     }
 
 

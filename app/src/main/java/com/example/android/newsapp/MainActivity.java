@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 News currentNews = mAdapter.getItem(position);
 
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
-                Uri newsUri = Uri.parse(currentNews.getURL());
+                Uri newsUri = Uri.parse(currentNews.getWebUrl());
 
                 // Create a new intent to view the earthquake URI
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, newsUri);
