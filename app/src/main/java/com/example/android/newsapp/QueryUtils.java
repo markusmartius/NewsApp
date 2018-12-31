@@ -36,9 +36,9 @@ public final class QueryUtils {
     private static final String GUARDIAN_TEST_DATA = "{\"response\":{\"status\":\"ok\",\"userTier" +
             "\":\"developer\",\"total\":14473,\"startIndex\":1,\"pageSize\":10,\"currentPage\":1," +
             "\"pages\":1448,\"orderBy\":\"relevance\",\"results\":[{\"id\":\"politics/2018/dec/01" +
-            "/may-v-corbyn-on-brexit-the-debate-over-the-debate\",\"type\":\"article\",\"sectionId\"" +
-            ",\"politics\",\"sectionName\":\"Politics\",\"webPublicationDate\":\"2018-12-01T07:00:15Z\"" +
-            ":\"webTitle\":\"May v Corbyn on Brexit: the debate over the debate\",\"webUrl\":\"https:" +
+            "/may-v-corbyn-on-brexit-the-debate-over-the-debate\",\"type\":\"article\",\"sectionId\":" +
+            "\"politics\",\"sectionName\":\"Politics\",\"webPublicationDate\":\"2018-12-01T07:00:15Z\"" +
+            ",\"webTitle\":\"May v Corbyn on Brexit: the debate over the debate\",\"webUrl\":\"https:" +
             "//www.theguardian.com/politics/2018/dec/01/may-v-corbyn-on-brexit-the-debate-over-" +
             "the-debate\",\"apiUrl\":\"https://content.guardianapis.com/politics/2018/dec/01/may-v-" +
             "corbyn-on-brexit-the-debate-over-the-debate\",\"isHosted\":false,\"pillarId\":\"pillar/news" +
@@ -128,24 +128,36 @@ public final class QueryUtils {
             //JSONObject root = new JSONObject(earthquakeJSON);
             JSONObject root = new JSONObject(GUARDIAN_TEST_DATA);
 
-            // Get the response Array from the JSON object as it contains the required data.
-            JSONArray featureArray = root.getJSONArray("response");
+            // Get the response Object from the JSON object
+            JSONObject responseObject = root.getJSONObject("response");
 
-            // extract what JSON data has been extracted
-            String place = featureArray.toString();
+            // Get the results array from the response Object
+            JSONArray resultsArray = responseObject.getJSONArray("results");
 
-            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            System.out.println(place);
+            // Iterate the results jsonArray to acquire individual object containing the news
+            // sectionId.
+            for(int i=0; i < resultsArray.length(); i++) {
 
+                // each loop step through each JSON object in the resultsArray
+                JSONObject resultObject = resultsArray.getJSONObject(i);
 
-            //Iterate the feature jsonArray to acquire individual required earthquake details
-            for(int i=0; i < featureArray.length(); i++) {
+                // extract the sectionId string so it can be checked
+                String sectionid = resultObject.optString("sectionId");
 
-                // each loop step through each JSON object in the featureArray
-                JSONObject featureObject = featureArray.getJSONObject(i);
+                // Check sectionId for string = news
+                // If it is the news sectionId acquire the required details
+                if (sectionid == "news") {
+                    // extract the earthquate url
+                    String weburl = responseObject.optString("webUrl");
+                    String webpublicationdate = responseObject.optString("webPublicationDate");
+                    String webtitle = responseObject.optString("webTitle");
+                    String sectionname = responseObject.optString("sectionName");
+                } else {
+                    return null;
+                }
 
-                // from each feature object pull out the properties object
-                JSONObject featureProperties = featureObject.getJSONObject("properties");
+                // from each feature object check if the object has the sectionId = news
+                JSONObject featureProperties = featureObject.getJSONObject("sectionId");
 
                 // acquire the key values for the following from the feature properties
                 // extract the magnitude of the earthquake

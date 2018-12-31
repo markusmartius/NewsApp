@@ -2,65 +2,64 @@ package com.example.android.newsapp;
 
 public class News {
     /**
-     * Magnitude of the earthquake
-     */ // the proceeding m just indicates a private variable
-    private Double mMagnitude;
-    /**
-     * Location the earthquake occurred
+     * Web URL of the news article
      */
-    private String mLocation;
+    private String mWebUrl;
     /**
-     * URL for earthquake webpage
+     * Publication date of the article
      */
-    private String mUrl;
+    private String mWebPublicationDate;
     /**
-     * The date when the earthquake occurred
+     * News article title
      */
-    private long mtimeInMilliseconds;
+    private String mWebTitle;
+    /**
+     * Section where article resides
+     */
+    private String mSectionName;
 
     /**
      * Create a new Earthquake object.
      *
-     * @param magnitude             is the magnitude of the earthquake
-     * @param location              is the location where the earthquake occurred
-     * @param url                   is the url for the earthquake info
-     * @param timeInMilliseconds    is the date the earthquake occurred
+     * @param weburl             Web URL of the news article
+     * @param webpublicationdate Publication date of the article
+     * @param webtitle           News article title
+     * @param sectionname        Section where article resides
      *
      */
-    public News(Double magnitude, String location, String url, long timeInMilliseconds) {
-        mMagnitude = magnitude;
-        mLocation = location;
-        mUrl = url;
-        mtimeInMilliseconds = timeInMilliseconds;
+    public News(String weburl, String webpublicationdate, String webtitle, String sectionname) {
+        mWebUrl = weburl;
+        mWebPublicationDate = webpublicationdate;
+        mWebTitle = webtitle;
+        mSectionName = sectionname;
     }
 
     /**
-     * Get the earthquake magnitude.
+     * Get Web URL of the news article.
      */
-    public Double getMagnitude() {
-        return mMagnitude;
+    public String getWebUrl() {
+        return mWebUrl;
     }
 
     /**
-     * Get the earthquake location.
+     * Get publication date of the article.
      */
-    public String getLocation() {
-        return mLocation;
+    public String getWebPublicationDateLocation() {
+        return mWebPublicationDate;
     }
 
     /**
-     * Get the earthquake url.
+     * Get news article title.
      */
-    public String getURL() {
-        return mUrl;
+    public String getWebTitleURL() {
+        return mWebTitle;
     }
 
     /**
-     * Get the date the earthquake occurred.
+     * Get section where article resides.
      */
 
-    public long getTimeInMilliseconds() {
-        return mtimeInMilliseconds;
+    public String getSectionName() {
+        return mSectionName;
     }
 }
-
