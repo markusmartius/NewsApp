@@ -2,12 +2,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/settings_title">
 
-    <EditTextPreference
-        android:defaultValue="@string/settings_min_magnitude_default"
-        android:inputType="numberDecimal"
+    <com.example.android.newsapp.DatePreference
         android:key="@string/settings_min_magnitude_key"
+        android:title="@string/settings_min_magnitude_label"
         android:selectAllOnFocus="true"
-        android:title="@string/settings_min_magnitude_label" />
+        android:defaultValue="@string/settings_from_date_default"
+        android:summary="Summary"/>
 
     <ListPreference
         android:defaultValue="@string/settings_order_by_default"
@@ -20,7 +20,7 @@
         android:defaultValue="@string/settings_news_type_by_default"
         android:entries="@array/settings_news_labels"
         android:entryValues="@array/settings_news_types"
-        android:key="@string/settings_order_by_key"
+        android:key="@string/settings_news_type_by_key"
         android:title="@string/settings_news_type_label" />
 
 </PreferenceScreen>

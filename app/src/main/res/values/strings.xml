@@ -21,7 +21,7 @@
     <string name="settings_title">News Settings</string>
 
     <!-- Strings For minimum magnitude Preference [CHAR LIMIT=30] -->
-    <string name="settings_min_magnitude_label">Minimum Magnitude</string>
+    <string name="settings_min_magnitude_label">Start Date</string>
     <string name="settings_min_magnitude_key" translatable="false">min_magnitude</string>
     <string name="settings_min_magnitude_default" translatable="false">0</string>
 
@@ -47,21 +47,25 @@
 
     <!-- Strings For New Type Preference -->
     <string name="settings_news_type_label">News From</string>
+    <string name="settings_news_type_by_key" translatable="false">world</string>
     <string name="settings_news_type_by_default" translatable="false">world</string>
 
     <!-- Label for UK News option [CHAR LIMIT=20] -->
     <string name="settings_uk_news_label">UK News</string>
+    <string name="settings_uk_news_by_key" translatable="false">uk-news</string>
     <string name="settings_uk_news_value" translatable="false">uk-news</string>
 
     <!-- Label for US News option [CHAR LIMIT=20] -->
     <string name="settings_us_news_label">US News</string>
+    <string name="settings_us_news_by_key" translatable="false">us-news</string>
     <string name="settings_us_news_value" translatable="false">us-news</string>
 
     <!-- Label for World News option [CHAR LIMIT=20] -->
     <string name="settings_world_news_label">World News</string>
+    <string name="settings_world_news_by_key" translatable="false">world</string>
     <string name="settings_world_news_value" translatable="false">world</string>
 
-    <string name="guardian_api_key"></string>
+    <string name="guardian_api_key">61841e93-3fdf-48dc-96a6-bda4e03a1868</string>
 </resources>
 
 

@@ -23,8 +23,18 @@ public class SettingsActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_main);
 
+            // Display the current magnitude value under the setting option
             Preference minMagnitude = findPreference(getString(R.string.settings_min_magnitude_key));
             bindPreferenceSummaryToValue(minMagnitude);
+
+            // Display the current ordering by date under the setting option
+            Preference startDate = findPreference(getString(R.string.settings_order_by_key));
+            bindPreferenceSummaryToValue(startDate);
+
+            // Display the origin of the news displayed under the setting option
+            Preference newsOrigin = findPreference(getString(R.string.settings_news_type_by_key));
+            bindPreferenceSummaryToValue(newsOrigin);
+
         }
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
