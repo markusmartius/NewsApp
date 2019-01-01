@@ -48,21 +48,21 @@ public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.Loa
         sectionString = currentNews.getSectionName();
 
         // get title text from currentNews and slip it at the desired point
-        titleString = currentNews.getWebPublicationDate();
+        webpublicationdate = currentNews.getWebPublicationDate();
 
         // Find the TextView in the list_item.settings_main layout with the ID version_number
         TextView newstitleTextView = (TextView) listItemView.findViewById(R.id.newstitle);
         // Find the TextView in the list_item.settings_main layout with the ID version_number
         TextView pubdateTextView = (TextView) listItemView.findViewById(R.id.pubdate);
         // Find the TextView in the list_item.settings_main layout with the ID version_number
-        TextView artiletypeTextView = (TextView) listItemView.findViewById(R.id.articletype);
+        TextView articletypeTextView = (TextView) listItemView.findViewById(R.id.articletype);
 
         // add the news title text to the text view
         newstitleTextView.setText(titleString);
         // set the publication date text to the text view
-        pubdateTextView.setText(sectionString);
+        pubdateTextView.setText(webpublicationdate);
         // set the article type text to the text view
-        artiletypeTextView.setText(titleString);
+        articletypeTextView.setText(sectionString);
 
         // Return the whole list item layout (containing 3 TextViews)
         // so that it can be shown in the ListView

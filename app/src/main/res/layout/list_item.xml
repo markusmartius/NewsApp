@@ -1,12 +1,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingEnd="16dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingStart="16dp">
+
+    <TextView
+        android:id="@+id/articletype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="News" />
 
     <TextView
         android:id="@+id/newstitle"
@@ -21,11 +27,5 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         tools:text="2018-07-18T17:10:48Z" />
-
-    <TextView
-        android:id="@+id/articletype"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="News" />
 
 </LinearLayout>
