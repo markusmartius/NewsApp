@@ -23,45 +23,17 @@ public class SettingsActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_main);
 
-            System.out.println("1");
-
             // Display the current magnitude value under the setting option
             Preference minMagnitude = findPreference(getString(R.string.settings_min_magnitude_key));
             bindPreferenceSummaryToValue(minMagnitude);
-
-            System.out.println("2");
 
             // Display the current ordering by date under the setting option
             Preference startDate = findPreference(getString(R.string.settings_order_by_key));
             bindPreferenceSummaryToValue(startDate);
 
-            System.out.println("3");
-
             // Display the origin of the news displayed under the setting option
             Preference newsOrigin = findPreference(getString(R.string.settings_news_type_by_key));
             bindPreferenceSummaryToValue(newsOrigin);
-
-            System.out.println("4");
-
-            // This adds date picker to settings
-            final com.example.android.newsapp.DatePreference dp= (com.example.android.newsapp.DatePreference) findPreference("keyname");
-
-            System.out.println("5");
-
-            dp.setText("2014-08-02");
-            dp.setSummary("2014-08-02");
-            dp.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference,Object newValue) {
-                    //your code to change values.
-                    System.out.println("6");
-
-                    dp.setSummary((String) newValue);
-                    return true;
-                }
-            });
-
-
 
         }
         @Override
