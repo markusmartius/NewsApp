@@ -16,4 +16,9 @@
         android:key="@string/settings_news_type_by_key"
         android:title="@string/settings_news_type_label" />
 
+    <Preference
+        android:key="btnDateFilter"
+        android:summary="Reschedule using current setting"
+        android:title="Date From" />
+
 </PreferenceScreen>
