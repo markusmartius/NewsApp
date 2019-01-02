@@ -137,14 +137,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 getString(R.string.settings_order_by_default)
         );
 
-        System.out.println(orderBy);
-        System.out.println(getString(R.string.settings_order_by_key));
-        System.out.println(getString(R.string.settings_order_by_default));
-
-        String minMagnitude = sharedPrefs.getString(
-                getString(R.string.settings_min_magnitude_key),
-                getString(R.string.settings_min_magnitude_default));
-
         // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
         String newsType  = sharedPrefs.getString(
                 getString(R.string.settings_news_type_by_key),
