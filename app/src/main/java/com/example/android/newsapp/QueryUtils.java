@@ -78,10 +78,6 @@ public final class QueryUtils {
                 webpublicationdate = resultObject.optString("webPublicationDate");
                 webtitle = resultObject.optString("webTitle");
                 sectionname = resultObject.optString("sectionName");
-                System.out.println(weburl);
-                System.out.println(webpublicationdate);
-                System.out.println(webtitle);
-                System.out.println(sectionname);
 
                 // create a news object from the acquired data and add it to the
                 // news ArrayList

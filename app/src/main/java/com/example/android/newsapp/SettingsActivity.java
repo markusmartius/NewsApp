@@ -1,6 +1,7 @@
 package com.example.android.newsapp;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -8,6 +9,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -23,19 +25,38 @@ public class SettingsActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_main);
 
-            // Display the current ordering by date under the setting option
-            Preference startDate = findPreference(getString(R.string.settings_order_by_key));
-            bindPreferenceSummaryToValue(startDate);
-
-            // Display the origin of the news displayed under the setting option
+            // Get the news from heading of the news settings
             Preference newsOrigin = findPreference(getString(R.string.settings_news_type_by_key));
+            // Set the value to display under the settings heading
             bindPreferenceSummaryToValue(newsOrigin);
 
+            // Get the page size heading of the news settings
+            Preference newsPagesize = findPreference(getString(R.string.settings_page_size_key));
+            // Set the value to display under the settings heading
+            bindPreferenceSummaryToValue(newsPagesize);
         }
+
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             // The code in this method takes care of updating the displayed preference summary after it has been changed
             String stringValue = value.toString();
+
+            // Protect against incorrect input
+            // Ensure maximum page size value is below 200
+            if (preference.toString().contains(getString(R.string.settings_page_size_label))) {
+                int pageSize;
+                try {
+                    pageSize = Integer.parseInt(stringValue);
+                } catch(NumberFormatException nfe) {
+                    Toast.makeText(getActivity(), getString(R.string.page_length_not_int), Toast.LENGTH_LONG).show();
+                    return false;
+                }
+                if (pageSize >= 200) {
+                    Toast.makeText(getActivity(), getString(R.string.page_length_too_long), Toast.LENGTH_LONG).show();
+                    return false;
+                }
+            }
+
             if (preference instanceof ListPreference) {
                 ListPreference listPreference = (ListPreference) preference;
                 int prefIndex = listPreference.findIndexOfValue(stringValue);

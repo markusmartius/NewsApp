@@ -20,11 +20,6 @@
     <string name="settings_menu_item">Settings</string>
     <string name="settings_title">News Settings</string>
 
-    <!-- Strings For minimum magnitude Preference [CHAR LIMIT=30] -->
-    <string name="settings_from_date_label">From Date</string>
-    <string name="settings_from_date_key" translatable="false">from-date</string>
-    <string name="settings_from_date_default" translatable="false">2016-12-01</string>
-
     <!-- Strings For Order-By Preference [CHAR LIMIT=30] -->
     <string name="settings_order_by_label">Order By</string>
     <string name="settings_order_by_key" translatable="false">newest</string>
@@ -57,6 +52,14 @@
     <string name="settings_world_news_label">World News</string>
     <string name="settings_world_news_by_key" translatable="false">world</string>
     <string name="settings_world_news_value" translatable="false">world</string>
+
+    <!-- Label for returned page size [CHAR LIMIT=20] -->
+    <string name="settings_page_size_label">Number of News articles</string>
+    <string name="settings_page_size_key" translatable="false">10</string>
+    <string name="settings_page_size_default" translatable="false">10</string>
+
+    <string name="page_length_too_long">Page Size too large, must be less than 200</string>
+    <string name="page_length_not_int">Page Size must be an integer</string>
 
     <string name="guardian_api_key">61841e93-3fdf-48dc-96a6-bda4e03a1868</string>
 </resources>

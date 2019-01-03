@@ -20,28 +20,26 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
 
     private static final String LOG_TAG = MainActivity.class.getName();
 
     /** URL for news data from the Guardian dataset */
-    //private static final String GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=test";
-    //private static final String GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/search?q=debates&api-key=test";
     private static final String GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/";
 
-    // TEST URL
-    //private static final String GUARDIAN_REQUEST_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
-
     /**
-     * Constant value for the earthquake loader ID. We can choose any integer.
+     * Constant value for the news loader ID. We can choose any integer.
      * This really only comes into play if you're using multiple loaders.
      */
     private static final int NEWS_LOADER_ID = 1;
 
-    /** Adapter for the list of earthquakes */
+    /** Adapter for the list of news */
     private NewsAdapter mAdapter;
 
     /** TextView that is displayed when the list is empty */
@@ -58,10 +56,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // set the id for the empty state view
         mEmptyStateTextView = (TextView) findViewById(R.id.empty);
 
-        // add the empty state as an option in the earthquakeListView object.
+        // add the empty state as an option in the newsListView object.
         newsListView.setEmptyView(mEmptyStateTextView);
 
-        // Create a new adapter that takes an empty list of earthquakes as input
+        // Create a new adapter that takes an empty list of news as input
         mAdapter = new NewsAdapter(this, new ArrayList<News>());
 
         // Set the adapter on the {@link ListView}
@@ -73,22 +71,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // get the {@link Earthquake} object at the given position the user clicked on
+                // get the {@link News} object at the given position the user clicked on
                 News currentNews = mAdapter.getItem(position);
 
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
                 Uri newsUri = Uri.parse(currentNews.getWebUrl());
 
-                // Create a new intent to view the earthquake URI
+                // Create a new intent to view the news URI
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, newsUri);
-
-                // Could do this instead of previous three
-                /*
-                // Convert the String URL into a URI object (to pass into the Intent constructor)
-                Uri earthquakeUri = Uri.parse(currentEarthquake.getUrl());
-                // Create a new intent to view the earthquake URI
-                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);
-                */
 
                 startActivity(websiteIntent);
             }
@@ -116,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             View loadingIndicator = findViewById(R.id.indeterminateBar);
             loadingIndicator.setVisibility(View.GONE);
 
-            // Set empty state text to display "No earthquakes found."
+            // Set empty state text to display "No internet connection."
             // will set everytime, but is not used yet and is a low cost.
             mEmptyStateTextView.setText(R.string.internet_state);
         }
@@ -126,16 +116,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     // onCreateLoader instantiates and returns a new Loader for the given ID
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
 
-        // Create a new loader for the given URL
-        Log.i(LOG_TAG, "In onCreateLoader()");
-
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
-        String orderBy  = sharedPrefs.getString(
-                getString(R.string.settings_order_by_key),
-                getString(R.string.settings_order_by_default)
-        );
 
         // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
         String newsType  = sharedPrefs.getString(
@@ -143,11 +124,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 getString(R.string.settings_news_type_by_default)
         );
 
-        System.out.println("News Type: " + newsType);
-
-        String fromDate  = sharedPrefs.getString(
-                getString(R.string.settings_from_date_key),
-                getString(R.string.settings_from_date_default)
+        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
+        String pageSize  = sharedPrefs.getString(
+                getString(R.string.settings_page_size_key),
+                getString(R.string.settings_page_size_default)
         );
 
         // parse breaks apart the URI string that's passed into its parameter
@@ -158,14 +138,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         // Append query parameter and its value. For example, the `format=geojson`
-        //uriBuilder.appendQueryParameter(newsType, "");
-        uriBuilder.appendQueryParameter("order-by", orderBy);
-        uriBuilder.appendQueryParameter("from-date", fromDate);
+        uriBuilder.appendQueryParameter("page-size", pageSize);
         uriBuilder.appendQueryParameter("api-key", getString(R.string.guardian_api_key));
 
         System.out.println(uriBuilder.toString());
 
-        // Return the completed uri `http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=10&minmag=minMagnitude&orderby=time
+        // Return the completed uri `https://content.guardianapis.com/<plus_additional_requests>'
         return new NewsLoader(this, uriBuilder.toString());
     }
 
@@ -175,15 +153,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         View loadingIndicator = findViewById(R.id.indeterminateBar);
         loadingIndicator.setVisibility(View.GONE);
 
-        // Set empty state text to display "No earthquakes found."
-        // will set everytime, but is not used yet and is a low cost.
+        // Set empty state text to display "No News found."
         mEmptyStateTextView.setText(R.string.empty);
 
-        // Clear the adapter of previous earthquake data
-        Log.i(LOG_TAG, "In onLoadFinished()");
+        // Clear the adapter of previous news data
         mAdapter.clear();
 
-        // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
+        // If there is a valid list of {@link News}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (news != null && !news.isEmpty()) {
             mAdapter.addAll(news);

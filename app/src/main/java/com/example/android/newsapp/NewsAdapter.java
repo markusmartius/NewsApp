@@ -1,23 +1,18 @@
 package com.example.android.newsapp;
 
 import android.app.Activity;
-        import android.app.LoaderManager;
-        import android.content.Loader;
-        import android.os.Bundle;
-        import android.support.v4.content.ContextCompat;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ArrayAdapter;
-        import android.widget.TextView;
-        import java.text.DecimalFormat;
+import android.app.LoaderManager;
+import android.content.Loader;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-        import java.util.ArrayList;
-        import java.util.Date;
-import java.util.TimeZone;
-
-import android.graphics.drawable.GradientDrawable;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.LoaderCallbacks<News> {
 
@@ -28,7 +23,6 @@ public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.Loa
     public NewsAdapter(Activity context, ArrayList<News> nameForArrayOfNewsObjects) {
         // the zero means we're initially not passing a view as it will be passed later???
         super(context, 0, nameForArrayOfNewsObjects);
-        // Set colour of list item
     }
 
     @Override

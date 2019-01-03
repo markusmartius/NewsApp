@@ -12,8 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:padding="12dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -21,6 +20,7 @@
             android:id="@+id/articletype"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             tools:text="World news" />
 
         <TextView
@@ -46,6 +46,7 @@
             android:id="@+id/pubdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             android:layout_gravity="end"
             tools:text="Mar 6, 2010" />
 
@@ -53,6 +54,7 @@
             android:id="@+id/pubtime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             android:layout_gravity="end"
             tools:text="3:00 PM" />
     </LinearLayout>
