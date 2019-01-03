@@ -11,16 +11,18 @@ import android.app.Activity;
         import android.widget.ArrayAdapter;
         import android.widget.TextView;
         import java.text.DecimalFormat;
-        import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
         import java.util.ArrayList;
         import java.util.Date;
-        import android.graphics.drawable.GradientDrawable;
+import java.util.TimeZone;
+
+import android.graphics.drawable.GradientDrawable;
 
 public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.LoaderCallbacks<News> {
 
     private String titleString;
     private String sectionString;
-    private String webpublicationdate;
 
     // New constructor
     public NewsAdapter(Activity context, ArrayList<News> nameForArrayOfNewsObjects) {
@@ -47,26 +49,68 @@ public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.Loa
         // get title text from currentNews and slip it at the desired point
         sectionString = currentNews.getSectionName();
 
-        // get title text from currentNews and slip it at the desired point
-        webpublicationdate = currentNews.getWebPublicationDate();
-
         // Find the TextView in the list_item.settings_main layout with the ID version_number
         TextView newstitleTextView = (TextView) listItemView.findViewById(R.id.newstitle);
+
+        Date modifiedDate = new Date();
+        // Create a new Date object from the date in the JSON
+        try {
+            modifiedDate = dateCreator(currentNews.getWebPublicationDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         // Find the TextView in the list_item.settings_main layout with the ID version_number
         TextView pubdateTextView = (TextView) listItemView.findViewById(R.id.pubdate);
+        // Format the date string (i.e. "Jan 2, 1972")
+        String formattedDate = formatDate(modifiedDate);
+        // set the publication date text to the text view
+        pubdateTextView.setText(formattedDate);
+
+        // Find the TextView in the list_item.xml layout with the ID version_number
+        TextView timeTextView = (TextView) listItemView.findViewById(R.id.pubtime);
+        // Format the time string (i.e. "4:30PM")
+        String formattedTime = formatTime(modifiedDate);
+        // Get the earthquake date from the current Earthquake object and
+        // set this text on the name TextView
+        timeTextView.setText(formattedTime);
+
         // Find the TextView in the list_item.settings_main layout with the ID version_number
         TextView articletypeTextView = (TextView) listItemView.findViewById(R.id.articletype);
 
         // add the news title text to the text view
         newstitleTextView.setText(titleString);
-        // set the publication date text to the text view
-        pubdateTextView.setText(webpublicationdate);
         // set the article type text to the text view
         articletypeTextView.setText(sectionString);
 
         // Return the whole list item layout (containing 3 TextViews)
         // so that it can be shown in the ListView
         return listItemView;
+    }
+
+    /**
+     * Convert date string from JSON into simpledateformat
+     */
+    private Date dateCreator (String createDate) throws ParseException {
+        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        Date parsed = parser.parse(createDate);
+        return parsed;
+    }
+
+    /**
+     * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
+     */
+    private String formatDate(Date dateObject) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd LLL yyyy");
+        return dateFormat.format(dateObject);
+    }
+
+    /**
+     * Return the formatted date string (i.e. "4:30 PM") from a Date object.
+     */
+    private String formatTime(Date dateObject) {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+        return timeFormat.format(dateObject);
     }
 
     @Override
