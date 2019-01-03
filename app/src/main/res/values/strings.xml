@@ -20,19 +20,6 @@
     <string name="settings_menu_item">Settings</string>
     <string name="settings_title">News Settings</string>
 
-    <!-- Strings For Order-By Preference [CHAR LIMIT=30] -->
-    <string name="settings_order_by_label">Order By</string>
-    <string name="settings_order_by_key" translatable="false">newest</string>
-    <string name="settings_order_by_default" translatable="false">newest</string>
-
-    <!-- Label for order-by oldest option [CHAR LIMIT=20] -->
-    <string name="settings_order_by_magnitude_label">Oldest</string>
-    <string name="settings_order_by_magnitude_value" translatable="false">oldest</string>
-
-    <!-- Label for order-by most recent option [CHAR LIMIT=20] -->
-    <string name="settings_order_by_most_recent_label">Most Recent</string>
-    <string name="settings_order_by_most_recent_value" translatable="false">newest</string>
-
     <!-- Strings For New Type Preference -->
     <string name="settings_news_type_label">News From</string>
     <string name="settings_news_type_by_key" translatable="false">world</string>
@@ -62,6 +49,8 @@
     <string name="page_length_not_int">Page Size must be an integer</string>
 
     <string name="guardian_api_key">61841e93-3fdf-48dc-96a6-bda4e03a1868</string>
+
+    <string name="guardian_au_api_key">d136064f9d2e4d45beecfd22cfd73acf</string>
 </resources>
 
 

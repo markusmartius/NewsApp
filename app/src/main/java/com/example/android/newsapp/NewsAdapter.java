@@ -44,7 +44,7 @@ public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.Loa
         sectionString = currentNews.getSectionName();
 
         // Find the TextView in the list_item.settings_main layout with the ID version_number
-        TextView newstitleTextView = (TextView) listItemView.findViewById(R.id.newstitle);
+        TextView newstitleTextView = listItemView.findViewById(R.id.newstitle);
 
         Date modifiedDate = new Date();
         // Create a new Date object from the date in the JSON
@@ -55,14 +55,14 @@ public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.Loa
         }
 
         // Find the TextView in the list_item.settings_main layout with the ID version_number
-        TextView pubdateTextView = (TextView) listItemView.findViewById(R.id.pubdate);
+        TextView pubdateTextView = listItemView.findViewById(R.id.pubdate);
         // Format the date string (i.e. "Jan 2, 1972")
         String formattedDate = formatDate(modifiedDate);
         // set the publication date text to the text view
         pubdateTextView.setText(formattedDate);
 
         // Find the TextView in the list_item.xml layout with the ID version_number
-        TextView timeTextView = (TextView) listItemView.findViewById(R.id.pubtime);
+        TextView timeTextView = listItemView.findViewById(R.id.pubtime);
         // Format the time string (i.e. "4:30PM")
         String formattedTime = formatTime(modifiedDate);
         // Get the earthquake date from the current Earthquake object and
@@ -70,7 +70,7 @@ public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.Loa
         timeTextView.setText(formattedTime);
 
         // Find the TextView in the list_item.settings_main layout with the ID version_number
-        TextView articletypeTextView = (TextView) listItemView.findViewById(R.id.articletype);
+        TextView articletypeTextView = listItemView.findViewById(R.id.articletype);
 
         // add the news title text to the text view
         newstitleTextView.setText(titleString);

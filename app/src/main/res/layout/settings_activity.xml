@@ -1,4 +1,5 @@
 <fragment
+    android:id="@+id/setting_activity"
     android:name="com.example.android.newsapp.SettingsActivity$NewsPreferenceFragment"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
