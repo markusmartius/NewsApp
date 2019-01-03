@@ -42,8 +42,8 @@
     <string name="settings_page_size_key" translatable="false">10</string>
     <string name="settings_page_size_default" translatable="false">10</string>
 
-    <string name="page_length_too_long">Page Size too large, must be less than 200</string>
-    <string name="page_length_not_int">Page Size must be an integer</string>
+    <string name="page_length_too_long">Too many articles chosen, must be 200 or less</string>
+    <string name="page_length_not_int">The number of articles must be an integer</string>
 
     <string name="guardian_api_key">61841e93-3fdf-48dc-96a6-bda4e03a1868</string>
 </resources>

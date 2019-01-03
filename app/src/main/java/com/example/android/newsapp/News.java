@@ -19,12 +19,12 @@ public class News {
     private String mSectionName;
 
     /**
-     * Create a new Earthquake object.
+     * Create a new News object.
      *
-     * @param weburl             Web URL of the news article
-     * @param webpublicationdate Publication date of the article
-     * @param newstitle           News article title
-     * @param sectionname        Section where article resides
+     * @param weburl                Web URL of the news article
+     * @param webpublicationdate    Publication date of the article
+     * @param newstitle             News article title
+     * @param sectionname           Section where article resides
      *
      */
     public News(String weburl, String webpublicationdate, String newstitle, String sectionname) {
@@ -58,7 +58,6 @@ public class News {
     /**
      * Get section where article resides.
      */
-
     public String getSectionName() {
         return mSectionName;
     }

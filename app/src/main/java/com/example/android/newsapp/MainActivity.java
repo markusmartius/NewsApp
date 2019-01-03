@@ -132,11 +132,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        // Append query parameter and its value. For example, the `format=geojson`
+        // Append query parameter and its value.
         uriBuilder.appendQueryParameter("page-size", pageSize);
         uriBuilder.appendQueryParameter("api-key", getString(R.string.guardian_api_key));
-
-        System.out.println(uriBuilder.toString());
 
         // Return the completed uri `https://content.guardianapis.com/<plus_additional_requests>'
         return new NewsLoader(this, uriBuilder.toString());

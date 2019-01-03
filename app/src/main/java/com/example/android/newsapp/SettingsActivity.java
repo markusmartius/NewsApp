@@ -49,7 +49,7 @@ public class SettingsActivity extends AppCompatActivity {
                     Toast.makeText(getActivity(), getString(R.string.page_length_not_int), Toast.LENGTH_LONG).show();
                     return false;
                 }
-                if (pageSize >= 200) {
+                if (pageSize > 200) {
                     Toast.makeText(getActivity(), getString(R.string.page_length_too_long), Toast.LENGTH_LONG).show();
                     return false;
                 }

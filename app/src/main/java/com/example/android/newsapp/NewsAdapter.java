@@ -20,7 +20,7 @@ public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.Loa
 
     // New constructor
     public NewsAdapter(Activity context, ArrayList<News> nameForArrayOfNewsObjects) {
-        // the zero means we're initially not passing a view as it will be passed later???
+        // the zero means we're initially not passing a view as it will be passed later.
         super(context, 0, nameForArrayOfNewsObjects);
     }
 
@@ -64,7 +64,7 @@ public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.Loa
         TextView timeTextView = listItemView.findViewById(R.id.pubtime);
         // Format the time string (i.e. "4:30PM")
         String formattedTime = formatTime(modifiedDate);
-        // Get the earthquake date from the current Earthquake object and
+        // Get the News date from the current News object and
         // set this text on the name TextView
         timeTextView.setText(formattedTime);
 
@@ -76,7 +76,7 @@ public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.Loa
         // set the article type text to the text view
         articletypeTextView.setText(sectionString);
 
-        // Return the whole list item layout (containing 3 TextViews)
+        // Return the whole list item layout
         // so that it can be shown in the ListView
         return listItemView;
     }

@@ -37,10 +37,10 @@ public final class QueryUtils {
      */
     public static List<News> extractFeatureFromJson(String newsJSON) {
 
-        // Create an empty ArrayList that we can start adding earthquakes to
+        // Create an empty ArrayList that we can start adding new to
         List<News> newsarticles = new ArrayList<>();
 
-        // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
+        // Try to parse the JSON. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
         // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
@@ -82,10 +82,9 @@ public final class QueryUtils {
             // with the message from the exception.
             Log.e("QueryUtils", "Problem parsing the news JSON results", e);
         }
-        // Return the list of earthquakes
+        // Return the list of news'
         return newsarticles;
     }
-
 
     /**
      * Returns new URL object from the given string URL.
@@ -161,7 +160,7 @@ public final class QueryUtils {
     }
 
     /**
-     * Query the Guardian dataset and return a list of {@link News} objects.
+     * Query the Guardian data set and return a list of {@link News} objects.
      */
     public static List<News> fetchNewsData(String requestUrl) {
 
