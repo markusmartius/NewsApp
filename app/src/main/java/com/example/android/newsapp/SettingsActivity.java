@@ -1,7 +1,5 @@
 package com.example.android.newsapp;
 
-import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;

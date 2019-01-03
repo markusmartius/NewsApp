@@ -16,12 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Helper methods related to requesting and receiving earthquake data from USGS.
+ * Helper methods related to requesting and receiving News data from Guardian.
  */
 public final class QueryUtils {
 
     /** Tag for the log messages */
-    public static final String LOG_TAG = QueryUtils.class.getSimpleName();
+    private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
     /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.
@@ -46,7 +46,6 @@ public final class QueryUtils {
         try {
             // Convert the JSON string to a JSON object
             JSONObject root = new JSONObject(newsJSON);
-            //JSONObject root = new JSONObject(GUARDIAN_TEST_DATA);
 
             // Get the response Object from the JSON object
             JSONObject responseObject = root.getJSONObject("response");
@@ -61,9 +60,6 @@ public final class QueryUtils {
                 // each loop step through each JSON object in the resultsArray
                 JSONObject resultObject = resultsArray.getJSONObject(i);
 
-                // extract the sectionId string so it can be checked
-                String sectionid = resultObject.optString("sectionId");
-
                 // Define string to hold required JSON strings
                 String weburl = null;
                 String webpublicationdate = null;
@@ -72,18 +68,13 @@ public final class QueryUtils {
 
                 // Check sectionId for string = news
                 // If it is the news sectionId acquire the required details
-                //if (sectionid.equals("world")) {
-                    // extract the earthquate url
                 weburl = resultObject.optString("webUrl");
                 webpublicationdate = resultObject.optString("webPublicationDate");
                 webtitle = resultObject.optString("webTitle");
                 sectionname = resultObject.optString("sectionName");
 
-                // create a news object from the acquired data and add it to the
-                // news ArrayList
+                // create a news object from the acquired data and add it to the news ArrayList
                 newsarticles.add(new News(weburl, webpublicationdate, webtitle, sectionname));
-                //}
-                Log.i("QueryUtils", "Finished parsing JSON Object.");
             }
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
@@ -151,7 +142,6 @@ public final class QueryUtils {
         return jsonResponse;
     }
 
-
     /**
      * Convert the {@link InputStream} into a String which contains the
      * whole JSON response from the server.
@@ -170,19 +160,11 @@ public final class QueryUtils {
         return output.toString();
     }
 
-
     /**
-     * Query the USGS dataset and return a list of {@link News} objects.
+     * Query the Guardian dataset and return a list of {@link News} objects.
      */
-    public static List<News> fetchEarthquakeData(String requestUrl) {
+    public static List<News> fetchNewsData(String requestUrl) {
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        Log.i(LOG_TAG, "In fetchEarthquakeData()");
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -194,10 +176,8 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Extract relevant fields from the JSON response and create a list of {@link Earthquake}s
-        List<News> news = extractFeatureFromJson(jsonResponse);
-
-        // Return the list of {@link Earthquake}s
-        return news;
+        // Extract relevant fields from the JSON response and create a list of {@link News}s
+        // Return the list of {@link News}s
+        return extractFeatureFromJson(jsonResponse);
     }
 }

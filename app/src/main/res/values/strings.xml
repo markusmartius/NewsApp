@@ -27,17 +27,14 @@
 
     <!-- Label for UK News option [CHAR LIMIT=20] -->
     <string name="settings_uk_news_label">UK News</string>
-    <string name="settings_uk_news_by_key" translatable="false">uk-news</string>
     <string name="settings_uk_news_value" translatable="false">uk-news</string>
 
     <!-- Label for US News option [CHAR LIMIT=20] -->
     <string name="settings_us_news_label">US News</string>
-    <string name="settings_us_news_by_key" translatable="false">us-news</string>
     <string name="settings_us_news_value" translatable="false">us-news</string>
 
     <!-- Label for World News option [CHAR LIMIT=20] -->
     <string name="settings_world_news_label">World News</string>
-    <string name="settings_world_news_by_key" translatable="false">world</string>
     <string name="settings_world_news_value" translatable="false">world</string>
 
     <!-- Label for returned page size [CHAR LIMIT=20] -->
@@ -49,8 +46,6 @@
     <string name="page_length_not_int">Page Size must be an integer</string>
 
     <string name="guardian_api_key">61841e93-3fdf-48dc-96a6-bda4e03a1868</string>
-
-    <string name="guardian_au_api_key">d136064f9d2e4d45beecfd22cfd73acf</string>
 </resources>
 
 

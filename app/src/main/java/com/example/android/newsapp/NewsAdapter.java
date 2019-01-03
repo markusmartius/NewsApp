@@ -16,7 +16,6 @@ import java.util.Date;
 
 public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.LoaderCallbacks<News> {
 
-    private String titleString;
     private String sectionString;
 
     // New constructor
@@ -38,7 +37,7 @@ public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.Loa
         News currentNews = getItem(position);
 
         // get title text from currentNews and slip it at the desired point
-        titleString = currentNews.getNewsTitle();
+        String titleString = currentNews.getNewsTitle();
 
         // get title text from currentNews and slip it at the desired point
         sectionString = currentNews.getSectionName();
@@ -87,8 +86,7 @@ public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.Loa
      */
     private Date dateCreator (String createDate) throws ParseException {
         SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        Date parsed = parser.parse(createDate);
-        return parsed;
+        return parser.parse(createDate);
     }
 
     /**

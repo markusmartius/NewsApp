@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/textColorNewsHeadline"
             android:textSize="16sp"
-            android:fontFamily="sans-serif-medium"
+            android:textStyle="bold"
             tools:text="Long placeholder location that should wrap to more than 2 lines of text." />
 
     </LinearLayout>
