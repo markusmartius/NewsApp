@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.Loa
     /**
      * Convert date string from JSON into simpledateformat
      */
-    private Date dateCreator (String createDate) throws ParseException {
+    private Date dateCreator(String createDate) throws ParseException {
         SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         return parser.parse(createDate);
     }

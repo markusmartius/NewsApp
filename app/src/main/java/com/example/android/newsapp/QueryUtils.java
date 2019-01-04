@@ -1,5 +1,7 @@
 package com.example.android.newsapp;
+
 import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +22,9 @@ import java.util.List;
  */
 public final class QueryUtils {
 
-    /** Tag for the log messages */
+    /**
+     * Tag for the log messages
+     */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
     /**
@@ -55,7 +59,7 @@ public final class QueryUtils {
 
             // Iterate the results jsonArray to acquire individual object containing the news
             // sectionId.
-            for(int i=0; i < resultsArray.length(); i++) {
+            for (int i = 0; i < resultsArray.length(); i++) {
 
                 // each loop step through each JSON object in the resultsArray
                 JSONObject resultObject = resultsArray.getJSONObject(i);

@@ -45,7 +45,7 @@ public class SettingsActivity extends AppCompatActivity {
                 int pageSize;
                 try {
                     pageSize = Integer.parseInt(stringValue);
-                } catch(NumberFormatException nfe) {
+                } catch (NumberFormatException nfe) {
                     Toast.makeText(getActivity(), getString(R.string.page_length_not_int), Toast.LENGTH_LONG).show();
                     return false;
                 }

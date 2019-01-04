@@ -8,9 +8,9 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private static final String LOG_TAG = MainActivity.class.getName();
 
-    /** URL for news data from the Guardian dataset */
+    /**
+     * URL for news data from the Guardian dataset
+     */
     private static final String GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/";
 
     /**
@@ -34,10 +37,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      */
     private static final int NEWS_LOADER_ID = 1;
 
-    /** Adapter for the list of news */
+    /**
+     * Adapter for the list of news
+     */
     private NewsAdapter mAdapter;
 
-    /** TextView that is displayed when the list is empty */
+    /**
+     * TextView that is displayed when the list is empty
+     */
     private TextView mEmptyStateTextView;
 
     @Override
@@ -114,13 +121,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
-        String newsType  = sharedPrefs.getString(
+        String newsType = sharedPrefs.getString(
                 getString(R.string.settings_news_type_by_key),
                 getString(R.string.settings_news_type_by_default)
         );
 
         // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
-        String pageSize  = sharedPrefs.getString(
+        String pageSize = sharedPrefs.getString(
                 getString(R.string.settings_page_size_key),
                 getString(R.string.settings_page_size_default)
         );
