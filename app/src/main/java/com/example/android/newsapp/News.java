@@ -1,5 +1,7 @@
 package com.example.android.newsapp;
 
+import java.util.ArrayList;
+
 public class News {
     /**
      * Web URL of the news article
@@ -17,6 +19,11 @@ public class News {
      * Section where article resides
      */
     private String mSectionName;
+    /**
+     * Author/s of the article
+     */
+    private ArrayList<String> mAuthors;
+
 
     /**
      * Create a new News object.
@@ -25,12 +32,15 @@ public class News {
      * @param webpublicationdate Publication date of the article
      * @param newstitle          News article title
      * @param sectionname        Section where article resides
+     * @param authors           Name of the author/s for the article
+     *
      */
-    public News(String weburl, String webpublicationdate, String newstitle, String sectionname) {
+    public News(String weburl, String webpublicationdate, String newstitle, String sectionname, ArrayList<String> authors) {
         mWebUrl = weburl;
         mWebPublicationDate = webpublicationdate;
         mNewsTitle = newstitle;
         mSectionName = sectionname;
+        mAuthors = authors;
     }
 
     /**
@@ -59,5 +69,11 @@ public class News {
      */
     public String getSectionName() {
         return mSectionName;
+    }
+    /**
+     * Get author/s for the article.
+     */
+    public ArrayList<String> getAuthors() {
+        return mAuthors;
     }
 }

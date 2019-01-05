@@ -17,7 +17,7 @@ import java.util.Date;
 
 public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.LoaderCallbacks<News> {
 
-    private String sectionString;
+    private ArrayList<String> authorsArray;
 
     // New constructor
     public NewsAdapter(Activity context, ArrayList<News> nameForArrayOfNewsObjects) {
@@ -34,17 +34,20 @@ public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.Loa
                     R.layout.list_item, parent, false);
         }
 
-        // Get the {@link Word} object located at this position in the list
+        // Get the {@link News} object located at this position in the list
         News currentNews = getItem(position);
 
         // get title text from currentNews and slip it at the desired point
         String titleString = currentNews.getNewsTitle();
 
         // get title text from currentNews and slip it at the desired point
-        sectionString = currentNews.getSectionName();
+        String sectionString = currentNews.getSectionName();
 
         // Find the TextView in the list_item.settings_main layout with the ID version_number
         TextView newstitleTextView = listItemView.findViewById(R.id.newstitle);
+
+        // Find the TextView in the list_item.settings_main layout with the ID version_number
+        TextView sectionTextView = listItemView.findViewById(R.id.articletype);
 
         Date modifiedDate = new Date();
         // Create a new Date object from the date in the JSON
@@ -69,17 +72,41 @@ public class NewsAdapter extends ArrayAdapter<News> implements LoaderManager.Loa
         // set this text on the name TextView
         timeTextView.setText(formattedTime);
 
-        // Find the TextView in the list_item.settings_main layout with the ID version_number
-        TextView articletypeTextView = listItemView.findViewById(R.id.articletype);
-
         // add the news title text to the text view
         newstitleTextView.setText(titleString);
-        // set the article type text to the text view
-        articletypeTextView.setText(sectionString);
+
+        // add the section news type to the text view
+        sectionTextView.setText(sectionString);
+
+        // add the authors to the text view
+        // get title text from currentNews and slip it at the desired point
+        authorsArray = currentNews.getAuthors();
+        // Turn array of authors names into a string
+        String authorsString = authorArrayToString(authorsArray);
+        // Find the TextView in the list_item.settings_main layout with the ID version_number
+        TextView authorsTextView = listItemView.findViewById(R.id.authors);
+        // add the authors to the text view
+        authorsTextView.setText(authorsString);
 
         // Return the whole list item layout
         // so that it can be shown in the ListView
         return listItemView;
+    }
+
+    // Convert array of authors to a string
+    private String authorArrayToString(ArrayList<String> authors) {
+        StringBuilder authorsString = new StringBuilder();
+        if (authors.size() > 0) {
+            for (int i = 0; i < authors.size(); i++) {
+                authorsString.append(authors.get(i));
+                if (i < (authors.size() - 1)) {
+                    authorsString.append(", ");
+                }
+            }
+        } else {
+            authorsString.append(getContext().getResources().getString(R.string.no_author));
+        }
+        return authorsString.toString();
     }
 
     /**

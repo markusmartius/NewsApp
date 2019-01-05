@@ -9,7 +9,7 @@ import java.util.List;
  * Loads a list of news' by using an AsyncTask Loader to perform the
  * network request to the given URL.
  */
-public class NewsLoader extends AsyncTaskLoader<List<News>> {
+public class NewsLoader extends AsyncTaskLoader<List<News>>  {
 
     /**
      * Query URL

@@ -33,6 +33,20 @@
             android:textStyle="bold"
             tools:text="Long placeholder location that should wrap to more than 2 lines of text." />
 
+        <TextView
+            android:id="@+id/authortitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/author_title"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/authors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            tools:text="John Doe" />
+
     </LinearLayout>
 
     <LinearLayout

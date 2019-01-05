@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -140,7 +139,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         // Append query parameter and its value.
+        // Request the number of articles.
         uriBuilder.appendQueryParameter("page-size", pageSize);
+        // Request the author.
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
+        // add the api key to the request.
         uriBuilder.appendQueryParameter("api-key", getString(R.string.guardian_api_key));
 
         // Return the completed uri `https://content.guardianapis.com/<plus_additional_requests>'

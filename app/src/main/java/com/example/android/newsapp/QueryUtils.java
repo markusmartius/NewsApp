@@ -1,11 +1,9 @@
 package com.example.android.newsapp;
 
 import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -69,6 +67,7 @@ public final class QueryUtils {
                 String webpublicationdate = null;
                 String webtitle = null;
                 String sectionname = null;
+                ArrayList<String> authors = new ArrayList<>();
 
                 // Check sectionId for string = news
                 // If it is the news sectionId acquire the required details
@@ -77,8 +76,23 @@ public final class QueryUtils {
                 webtitle = resultObject.optString("webTitle");
                 sectionname = resultObject.optString("sectionName");
 
+                if (resultObject.getJSONArray("tags") != null) {
+
+                    JSONArray tagsArray = resultObject.getJSONArray("tags");
+
+                    // Iterate the tags jsonArray to acquire the author/s of the news article
+                    for (int j = 0; j < tagsArray.length(); j++) {
+                        // Extract the tags object
+                        JSONObject tagsObject = tagsArray.getJSONObject(j);
+                        // check if the author name exists (stored in webTitle of tags object)
+                        if (tagsObject.getString("webTitle") != null) {
+                            authors.add(tagsObject.getString("webTitle"));
+                        }
+                    }
+                }
+
                 // create a news object from the acquired data and add it to the news ArrayList
-                newsarticles.add(new News(weburl, webpublicationdate, webtitle, sectionname));
+                newsarticles.add(new News(weburl, webpublicationdate, webtitle, sectionname, authors));
             }
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
