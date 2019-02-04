@@ -1,18 +1,18 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/settings_title">
+android:title="@string/settings_title">
 
-    <ListPreference
-        android:defaultValue="@string/settings_news_type_by_default"
-        android:entries="@array/settings_news_labels"
-        android:entryValues="@array/settings_news_types"
-        android:key="@string/settings_news_type_by_key"
-        android:title="@string/settings_news_type_label" />
+<ListPreference
+    android:defaultValue="@string/settings_news_type_by_default"
+    android:entries="@array/settings_news_labels"
+    android:entryValues="@array/settings_news_types"
+    android:key="@string/settings_news_type_by_key"
+    android:title="@string/settings_news_type_label" />
 
-    <EditTextPreference
-        android:defaultValue="@string/settings_page_size_default"
-        android:inputType="numberDecimal"
-        android:key="@string/settings_page_size_key"
-        android:selectAllOnFocus="true"
-        android:title="@string/settings_page_size_label" />
+<EditTextPreference
+    android:defaultValue="@string/settings_page_size_default"
+    android:inputType="numberDecimal"
+    android:key="@string/settings_page_size_key"
+    android:selectAllOnFocus="true"
+    android:title="@string/settings_page_size_label" />
 
 </PreferenceScreen>

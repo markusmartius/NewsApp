@@ -46,9 +46,8 @@
 
     <string name="no_author">Unknown</string>
     <string name="author_title">Author: </string>
-
-
-
+    
+    <string name="guardian_api_key">61841e93-3fdf-48dc-96a6-bda4e03a1868</string>
 </resources>
 
 
